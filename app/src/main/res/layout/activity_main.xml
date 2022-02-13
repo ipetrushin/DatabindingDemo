@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<data>
+<variable
+    name="player"
+    type="com.example.databindingdemo.Player" />
+    <import type="android.graphics.Color" />
+    <import type="android.view.View" />
+</data>
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@{player.name}"
+         />
+    <TextView
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{Integer.toString(player.rating)}"
+        android:background="@{ player.rating > 50 ? Color.GREEN : Color.RED }"
+        android:visibility="@{ player.rating > 10 ? View.VISIBLE : View.INVISIBLE }"
+        android:onClick="onClick"
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+</layout>
